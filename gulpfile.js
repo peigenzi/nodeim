@@ -16,7 +16,7 @@ gulp.task('restart', (done) => {
 })
 
 gulp.task('watch', () => {
-  gulp.watch([path.resolve(__dirname, './webim/**/*')], gulp.series('restart'))
+  return gulp.watch([path.resolve(__dirname, './webim/**/*')], gulp.series('restart'))
 })
 
 gulp.task('default', gulp.series('serve', 'watch'))

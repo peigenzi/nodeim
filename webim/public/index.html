@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>im</title>
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
   <h1>webim</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-header">User Info</div>
+          <div class="card-body">
+            nickName: tom
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header bg-warning text-white">User List</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">1</li>
+            <li class="list-group-item">2</li>
+            <li class="list-group-item">4</li>
+            <li class="list-group-item">3</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="card">
+          <div class="card-header bg-secondary text-white">会话列表</div>
+          <div class="card-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="./js/socket.io.js"></script>
+  <script>
+    let client = io.connect('127.0.0.1:9999', {
+      reconnectionAttempts: 10,
+      reconnection: true,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      timeout: 2000
+    })
+
+    client.on('connect', () => {})
+
+    client.on('online', data => {
+      console.log(data)
+    })
+
+    client.on('error', err => {
+
+    })
+  </script>
 </body>
+
 </html>
