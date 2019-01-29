@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mqtt</title>
+</head>
+
+<body>
+  <script src="http://localhost:7777/mqtt.js"></script>
+  <script>
+    let client = mqtt.connect('mqtt://localhost:7777', {username: 'tom', password: 'pass'})
+
+    client.on('connect', () => {
+      client.subscribe('sys/log/now')
+      client.subscribe('abc')
+      client.publish('sys/log/now', new Date().toISOString())
+      client.publish('abc', 'xxxxx')
+    })
+
+    client.on('message', (topic, message) => {
+      console.log(topic, message.toString())
+    })
+  </script>
+</body>
+
+</html>
